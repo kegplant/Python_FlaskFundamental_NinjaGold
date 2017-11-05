@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Registration Index</title>
+        <title>Ninja Gold</title>
         <style>
             label{
                 display:block;
@@ -28,7 +28,7 @@
         <!-- <link rel="stylesheet" href={{url_for('static',filename='style.css')}}> -->
     </head>
     <body>
-        <label>Your Gold: <span>0</span></label>
+        <label>Your Gold: <span>{{session['gold']}}</span></label>
         <form action="/process_money" method="post">
             <h3>Farm</h3>
             <h6>(earns 10-20 golds)</h6>
@@ -49,16 +49,15 @@
         </form>
         <label>Activities:</label>
         <div>
-           Earned 15 golds from the farm!(2013/09/03 6:15pm)
-           Entered a casino and lost 50 golds.. Ouch.(...date)
-           {% with messages=session['log']%}
-            {%for message in messages%}
-                <!-- <p style='color:{{color}}'>{{message}}</p> -->
-                <p>{{message}}</p>
-                <p>{{test}}</p>
-                <p>{{var}}</p>
-            {%endfor%}
-            {%endwith%}
+           <!-- Earned 15 golds from the farm!(2013/09/03 6:15pm)
+           Entered a casino and lost 50 golds.. Ouch.(...date) -->
+
+            {% for message,clr in logger %}
+                <p style='color:{{clr}}'>{{message}}</p>
+                <!-- <p>{{clr}}</p> -->
+            {% endfor %}
+            
+           
         </div>
     </body>
 </html>
